@@ -8,7 +8,13 @@ This will create a complete Kubernetes cluster on GKE bootstrapped with [helm](h
 terraform init
 ```
 
-### Three node cluster in `europe-north1-a`
+### Setup new cluster (prompted)
+
+```
+terraform apply
+```
+
+### Setup new cluster (pre-defined)
 
 ```
 terraform apply \

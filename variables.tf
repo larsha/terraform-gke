@@ -3,21 +3,21 @@ variable "project" {
 }
 
 variable "cluster_name" {
-  default = "bumblebee"
+  description = "Cluster name"
 }
 
 variable "zone" {
-  default = "europe-north1-a"
+  description = "Zone on Google Cloud (e.g. europe-north1-a)"
 }
 
 variable "node_count" {
-  default = "3"
+  description = "Number of worker nodes"
 }
 
 variable "machine_type" {
-  default = "n1-standard-1"
+  description = "Machine type on worker nodes (e.g. n1-standard-2)"
 }
 
 variable "disk_size_gb" {
-  default = "50"
+  description = "Disk size in GB for each worker node"
 }
