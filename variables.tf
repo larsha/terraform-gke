@@ -1,5 +1,5 @@
 variable "project" {
-  default = "brynn-145714"
+  description = "Project ID on Google Cloud"
 }
 
 variable "cluster_name" {
