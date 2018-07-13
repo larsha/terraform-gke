@@ -1,7 +1,8 @@
 # terraform-gke
 
 This will create a complete Kubernetes cluster on GKE bootstrapped with [helm](https://helm.sh/). This will also be installed by default:
-- [cert-manager](https://github.com/jetstack/cert-manager)
+- [cert-manager](https://github.com/kubernetes/charts/tree/master/stable/cert-manager)
+- [nginx-ingress](https://github.com/kubernetes/charts/tree/master/stable/nginx-ingress)
 
 ### Init
 ```
