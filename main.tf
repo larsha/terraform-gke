@@ -2,6 +2,11 @@ data "google_container_engine_versions" "versions" {
   zone = "${var.zone}"
 }
 
+resource "google_compute_address" "ip" {
+  name    = "${var.cluster_name}-ip"
+  project = "${var.project}"
+}
+
 resource "google_container_cluster" "cluster" {
   name                      = "${var.cluster_name}"
   project                   = "${var.project}"
@@ -32,6 +37,7 @@ resource "google_container_node_pool" "node_pool" {
   node_config {
     machine_type  = "${var.machine_type}"
     disk_size_gb  = "${var.disk_size_gb}"
+    disk_type     = "pd-ssd"
 
     # https://developers.google.com/identity/protocols/googlescopes
     oauth_scopes = [
@@ -55,6 +61,6 @@ resource "google_container_node_pool" "node_pool" {
   }
 
   provisioner "local-exec" {
-    command = "./local-exec/setup.sh ${google_container_cluster.cluster.name} ${var.zone} ${var.project}"
+    command = "./local-exec/setup.sh ${google_container_cluster.cluster.name} ${var.zone} ${var.project} ${google_compute_address.ip.address}"
   }
 }

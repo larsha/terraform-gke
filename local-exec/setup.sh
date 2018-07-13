@@ -18,3 +18,10 @@ helm install \
 	--tiller-namespace tiller \
 	--name cert-manager \
 	stable/cert-manager
+
+helm install \
+	--tiller-namespace tiller \
+	--name nginx \
+	--set controller.service.loadBalancerIP=$4 \
+	--set controller.service.externalTrafficPolicy=Local \
+    stable/nginx-ingress
