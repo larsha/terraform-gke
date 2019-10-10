@@ -13,13 +13,10 @@ helm init \
     --wait
 
 # Install cert-manager
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.10.1/deploy/manifests/00-crds.yaml
 
 # Create the namespace for cert-manager
 kubectl create namespace cert-manager
-
-# Label the cert-manager namespace to disable resource validation
-kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 
 # Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
@@ -32,7 +29,8 @@ helm install \
   --namespace cert-manager \
   --tiller-namespace tiller \
   --name cert-manager \
-  --version v0.7.2 \
+  --version v0.10.1 \
+  --wait \
   jetstack/cert-manager
 
 # Install nginx-ingress
@@ -45,5 +43,6 @@ helm install \
     --set controller.ingressClass=external \
     --set controller.stats.enabled=true \
     --set controller.metrics.enabled=true \
-    --version 1.6.0 \
+    --version 1.24.2 \
+    --wait \
     stable/nginx-ingress
